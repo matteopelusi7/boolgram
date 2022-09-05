@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <nav>
-        nav
+  <div class="navbar">
+    <nav class="container">
+        
     </nav>
   </div>
 </template>
@@ -16,10 +16,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 
-nav {
+.navbar {
     background-color: red;
     width: 100%;
-    height: 100px;
+    height: 70px;
+    position: fixed;
 }
 
 </style>
