@@ -6,6 +6,7 @@
             <div class="stories">
 
             </div>
+            
             <div class="post">
 
             </div>
