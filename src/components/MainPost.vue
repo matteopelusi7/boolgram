@@ -1,30 +1,10 @@
 <template>
     <div class="stories-post d-flex flex-column">
         <div class="stories">
-            <ul class="wrap-stories d-flex align-items-center justify-content-between m-0 p-0">
-                <li>
-                    <img class="logo-profile" src="../assets/landscape.png" width="60px" alt="">
-                    <p>estamte</p>
-                </li>
-                <li>
-                    <img class="logo-profile" src="../assets/landscape.png" width="60px" alt="">
-                    <p>trunte</p>
-                </li>
-                <li>
-                    <img class="logo-profile" src="../assets/landscape.png" width="60px" alt="">
-                    <p>wolf</p>
-                </li>
-                <li>
-                    <img class="logo-profile" src="../assets/landscape.png" width="60px" alt="">
-                    <p>calind</p>
-                </li>
-                <li>
-                    <img class="logo-profile" src="../assets/landscape.png" width="60px" alt="">
-                    <p>calind</p>
-                </li>
-                <li>
-                    <img class="logo-profile" src="../assets/landscape.png" width="60px" alt="">
-                    <p>calind</p>
+            <ul class="wrap-stories d-flex align-items-center justify-content-center m-0 p-0 flex-wrap">
+                <li v-for="(storie, i) in stories" :key="i" class="cursor-pointer list">
+                    <img class="logo-profile" :src="storie.profile_picture" width="60px" height="60px" alt="">
+                    <p>{{ storie.profile_name }}</p>
                 </li>
             </ul>
         </div>
@@ -79,9 +59,28 @@
 </template>
 
 <script>
+
+import axios from 'axios';
+
 export default {
   name: 'MainPost',
-  
+  data() {
+    return {
+        stories: []
+    }
+  },
+  methods: {
+    fetchStories: function() {
+        axios.get('https://flynn.boolean.careers/exercises/api/boolgram/profiles')
+        .then( res => {
+            this.stories = res.data
+            console.log(this.stories)
+        })
+    }
+  },
+  created() {
+    this.fetchStories()
+  }
 }
 </script>
 
@@ -134,6 +133,10 @@ li {
 .stories p {
     margin-top: 10px;
     font-size: 12px;
+}
+
+.list {
+    cursor: pointer;
 }
 
 </style>
