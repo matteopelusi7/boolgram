@@ -8,8 +8,8 @@
       </li>
       <li>
         <div class="col-auto">
-          <label for="inputPassword2" class="visually-hidden">Cerca</label>
-          <input type="password" class="form-control" id="inputPassword2" placeholder="Cerca">
+          <label for="search" class="visually-hidden">Cerca</label>
+          <input type="text" class="form-control" id="search" placeholder="Cerca">
       </div>
       </li>
       <li>
@@ -51,7 +51,7 @@ export default {
 
 .form-control {
   text-align: center;
-  padding: 4px 8px;
+  padding: 4px 30px;
   border-radius: 0px;
   border: 1px solid lightgray;
   font-size: 14px;
