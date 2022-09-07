@@ -66,7 +66,8 @@ export default {
   name: 'MainPost',
   data() {
     return {
-        stories: []
+        stories: [],
+        posts: []
     }
   },
   methods: {
@@ -76,10 +77,24 @@ export default {
             this.stories = res.data
             console.log(this.stories)
         })
+        .catch((err) => {
+            console.warn(err);
+        });
+    },
+    fetchPost: function() {
+        axios.get('https://flynn.boolean.careers/exercises/api/boolgram/posts')
+        .then( res => {
+            this.posts = res.data
+            console.log(this.posts)
+        })
+        .catch((err) => {
+            console.warn(err);
+        });
     }
   },
   created() {
-    this.fetchStories()
+    this.fetchStories();
+    this.fetchPost()
   }
 }
 </script>

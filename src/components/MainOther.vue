@@ -21,55 +21,10 @@
             </div>
             <div>
                 <ul class="px-5">
-                    <li class="d-flex align-items-center justify-content-between mb-3 p-0">
+                    <li v-for="(storie, i) in stories" :key="i" class="d-flex align-items-center justify-content-between mb-3 p-0">
                         <div class="gap-3 d-flex align-items-center justify-content-between">
-                            <img class="logo-profile" src="../assets/landscape.png" width="60px" alt="">
-                            <p class="m-0 p-0 fw-bold">estamte</p>
-                        </div>
-                        <div>
-                            <p class="m-0 p-0 text-primary">Segui</p>
-                        </div>
-                    </li>
-                    <li class="d-flex align-items-center justify-content-between mb-3 p-0">
-                        <div class="gap-3 d-flex align-items-center justify-content-between">
-                            <img class="logo-profile" src="../assets/landscape.png" width="60px" alt="">
-                            <p class="m-0 p-0 fw-bold">estamte</p>
-                        </div>
-                        <div>
-                            <p class="m-0 p-0 text-primary">Segui</p>
-                        </div>
-                    </li>
-                    <li class="d-flex align-items-center justify-content-between mb-3 p-0">
-                        <div class="gap-3 d-flex align-items-center justify-content-between">
-                            <img class="logo-profile" src="../assets/landscape.png" width="60px" alt="">
-                            <p class="m-0 p-0 fw-bold">estamte</p>
-                        </div>
-                        <div>
-                            <p class="m-0 p-0 text-primary">Segui</p>
-                        </div>
-                    </li>
-                    <li class="d-flex align-items-center justify-content-between mb-3 p-0">
-                        <div class="gap-3 d-flex align-items-center justify-content-between">
-                            <img class="logo-profile" src="../assets/landscape.png" width="60px" alt="">
-                            <p class="m-0 p-0 fw-bold">estamte</p>
-                        </div>
-                        <div>
-                            <p class="m-0 p-0 text-primary">Segui</p>
-                        </div>
-                    </li>
-                    <li class="d-flex align-items-center justify-content-between mb-3 p-0">
-                        <div class="gap-3 d-flex align-items-center justify-content-between">
-                            <img class="logo-profile" src="../assets/landscape.png" width="60px" alt="">
-                            <p class="m-0 p-0 fw-bold">estamte</p>
-                        </div>
-                        <div>
-                            <p class="m-0 p-0 text-primary">Segui</p>
-                        </div>
-                    </li>
-                    <li class="d-flex align-items-center justify-content-between mb-3 p-0">
-                        <div class="gap-3 d-flex align-items-center justify-content-between">
-                            <img class="logo-profile" src="../assets/landscape.png" width="60px" alt="">
-                            <p class="m-0 p-0 fw-bold">estamte</p>
+                            <img class="logo-profile" :src="storie.profile_picture" width="60px" height="60px" alt="">
+                            <p class="m-0 p-0 fw-bold">{{ storie.profile_name }}</p>
                         </div>
                         <div>
                             <p class="m-0 p-0 text-primary">Segui</p>
@@ -85,9 +40,31 @@
 </template>
 
 <script>
+
+import axios from 'axios';
+
 export default {
   name: 'MainOther',
-  
+  data() {
+    return {
+        stories: [],
+    }
+  },
+  methods: {
+    fetchStories: function() {
+        axios.get('https://flynn.boolean.careers/exercises/api/boolgram/profiles')
+        .then( res => {
+            this.stories = res.data
+            console.log(this.stories)
+        })
+        .catch((err) => {
+            console.warn(err);
+        });
+    },
+  },
+  created() {
+    this.fetchStories();
+  }
 }
 </script>
 
