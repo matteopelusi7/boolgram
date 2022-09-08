@@ -1,10 +1,17 @@
 <template>
   <div class="content">
-    <div class="container d-flex content-container">
 
-        <MainPost />
+    <div v-if="loading == true">
 
-        <MainOther />
+      <SkeletonLoading />
+      
+    </div>
+
+    <div v-else class="container d-flex content-container">
+
+      <MainPost />
+
+      <MainOther />
 
     </div>
   </div>
@@ -12,14 +19,52 @@
 
 <script>
 
+import axios from 'axios';
 import MainPost from '../components/MainPost.vue';
 import MainOther from '../components/MainOther.vue';
+import SkeletonLoading from '../components/SkeletonLoading.vue';
 
 export default {
   name: 'MainContent',
   components: {
     MainPost,
-    MainOther
+    MainOther,
+    SkeletonLoading
+  },
+  data() {
+    return {
+        stories: [],
+        posts: [],
+        loading: false,
+    }
+  },
+  methods: {
+    fetchStories: function() {
+        axios.get('https://flynn.boolean.careers/exercises/api/boolgram/profiles')
+        .then( res => {
+            this.stories = res.data
+            console.log(this.stories)
+            this.loading == true
+        })
+        .catch((err) => {
+            console.warn(err);
+        });
+    },
+    fetchPost: function() {
+        axios.get('https://flynn.boolean.careers/exercises/api/boolgram/posts')
+        .then( res => {
+            this.posts = res.data
+            console.log(this.posts)
+            this.loading == true
+        })
+        .catch((err) => {
+            console.warn(err);
+        });
+    }
+  },
+  created() {
+    this.fetchStories();
+    this.fetchPost()
   }
 }
 </script>
