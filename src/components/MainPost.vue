@@ -6,7 +6,7 @@
                     <img class="logo-profile" :src="storie.profile_picture" width="60px" height="60px" alt="">
                     <p>{{ storie.profile_name }}</p>
                 </li>
-            </ul>
+            </ul> 
         </div>
 
         <div v-for="(post, i) in posts" :key="i" class="post">
