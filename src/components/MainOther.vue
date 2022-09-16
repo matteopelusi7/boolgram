@@ -1,7 +1,7 @@
 <template>
     <div class="other">
         <div>
-            <ul class="d-flex align-items-center justify-content-between m-0 p-5">
+            <ul class="pfirst d-flex align-items-center justify-content-between m-0 p-5">
                 <li>
                     <img class="img-profile" src="../assets/profile.jpg" width="55px" alt="">
                 </li>
@@ -15,7 +15,7 @@
             </ul>
         </div>
         <div>
-            <div class="d-flex align-items-center justify-content-between p-5">
+            <div class="psecond d-flex align-items-center justify-content-between p-5">
                 <p class="m-0 p-0 text-fx">Suggerimenti per te</p>
                 <p class="m-0 p-0 fw-bold">Mostra tutti</p>
             </div>
@@ -27,7 +27,7 @@
                             <p class="m-0 p-0 fw-bold">{{ storie.profile_name }}</p>
                         </div>
                         <div>
-                            <p class="m-0 p-0 text-primary">Segui</p>
+                            <p class="ptird m-0 p-0 text-primary">Segui</p>
                         </div>
                     </li>
                 </ul>
@@ -105,6 +105,26 @@ li {
 
 .name-profile p {
     font-weight: 700;
+}
+
+@media all and (max-width: 995px) {
+
+    .pfirst {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .psecond {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .ptird {
+        display: none;
+    }
+
 }
 
 </style>
